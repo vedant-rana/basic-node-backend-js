@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
-import HttpStatus from "./constants/httpStatusCodes";
-import ErrorHandler from "./customError";
-import { successResponse } from "./responseFunctions";
+import HttpStatus from "./constants/httpStatusCodes.js";
+import ErrorHandler from "./customError.js";
+import { successResponse } from "./responseFunctions.js";
 
 export const sendToken = (res, next, user, statusCode, message) => {
   const token = user?.getJWTToken();
