@@ -1,1 +1,1 @@
-export const DEFAULT_LOGO_URL = "uploads/logos/default-logo.png";
+export const DEFAULT_LOGO_URL = "uploads/default-logo.png";

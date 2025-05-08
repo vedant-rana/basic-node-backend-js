@@ -1,6 +1,7 @@
 import { Model, Schema, model } from "mongoose";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import { RolesEnum } from "../utils/enums/commonEnums.js";
 
 const userSchema = new Schema(
   {
@@ -42,7 +43,8 @@ const userSchema = new Schema(
     },
     role: {
       type: Number,
-      default: 0,
+      default: RolesEnum.USER,
+      enum: Object.values(RolesEnum),
     },
   },
   {
@@ -59,7 +61,8 @@ userSchema.pre("save", async function (next) {
 });
 
 userSchema.methods.comparePassword = async function (candidatePassword) {
-  return await bcrypt.compare(candidatePassword, this.password);
+  var data = await bcrypt.compare(candidatePassword, this.password);
+  return data;
 };
 
 userSchema.methods.getJWTToken = function () {
